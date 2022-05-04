@@ -1,0 +1,65 @@
+{%load static%}
+<!doctype html>
+<html lang="ja">
+ <head>
+   <meta charset="utf-8">
+   <title>{%block title%}{%endblock%}</title>
+   <meta name="description" content="グミに特化した商品情報まとめサイト！自分好みのグミを見つけよう！">
+   <link rel="stylesheet" href={%static "css/base.css"%}>
+   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+ </head>
+ <body>
+   <header style="z-index:10000">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark ">
+      <div class="container-fluid ">
+       <div class="">
+        <a class="navbar-brand " href="{%url 'gumi:index'%}"><img src={%static "img/gumiLogo2.svg"%} width="50" height="50" >グミ廃人の備忘録</a>
+       </div>
+       <div class="toggle">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse " id="navbarSupportedContent">
+      　 {%if user.is_authenticated%}
+          <ul class="navbar-nav  me-auto mb-2   ml-lg-0">
+            <li class="nav-item">
+              <a class="nav-link" href="{%url 'gumi:mypage'%}">マイページ</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{%url 'accounts:logout'%}">ログアウト</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{%url 'gumi:contact'%}">お問い合わせ</a>
+            </li>
+          </ul>
+        {%else%}
+         <ul class="navbar-nav  me-auto mb-2   ml-lg-0">
+            <li class="nav-item">
+              <a class="nav-link" href="{%url 'accounts:signup'%}">サインアップ</a>
+            </li> 
+            <li class="nav-item">
+              <a class="nav-link" href="{%url 'accounts:login'%}">ログイン</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{%url 'gumi:contact'%}">お問い合わせ</a>
+            </li>
+         </ul>
+        {%endif%}
+         </div>
+      </div>
+     </div>
+    </div>
+  </header>
+    
+    <main>
+     {%block contents%}{%endblock%}
+    </main>
+    <footer>
+
+    </footer>
+   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+  </body>
+
+
+</html>

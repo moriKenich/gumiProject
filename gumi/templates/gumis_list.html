@@ -1,0 +1,34 @@
+ <div class="album py-5 bg-light">
+  <div class="container">
+   <div class="row  row-cols-1 row-cols-sm-1 row-cols-lg-2 row-cols-xl-3 g-3">
+    
+     
+   {% if object_list|length == 0 %}
+   <div class="col-lg-6 col-md-8 mx-auto">
+       <h1 class="fw-light pb-5">商品が見つかりませんでした。</h1>
+       <p class="lead text-muted">データベースに存在しないか、入力に誤りがある可能性があります。商品名がカタカナの場合、平仮名をカタカナに直すと正しく検索できることがあります。</p>
+    </div>
+    {%else%}
+      {%for record in object_list%}
+      <div class="col">
+        <div class="card shadow-sm">
+          <img src="{{record.image.url}}" class="bd-placeholder-img card-img-top" width="100%" height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/></img>
+          <div class="card-body">
+            <h3 class="card-title">{{record.title}}</h3>
+            <p class="card-text"><a  href="{%url 'gumi:gumi_maker' maker=record.maker.id%}">{{record.maker}}</a></p>
+            <div class="button-group">
+             {%if user.is_authenticated%}
+                <a href="{% url 'gumi:gumi_detail' record.pk%}" type="button" class="btn btn-primary btn-lg　text-right">詳細</a>
+             {%endif%}  
+                <a href="{%url 'gumi:gumi_cat' category=record.category.id%}" type="button" class="btn btn-outline-danger ">{{record.category}}</a>
+                <a href="{% url 'gumi:gumi_hard' hard=record.hard.id%}" type="button" class="btn btn-outline-primary">{{record.hard}}</a>
+                <a href="{% url 'gumi:gumi_powder' powder=record.powder.id%}" type="button" class="btn btn-outline-success">{{record.powder}}</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      {%endfor%}
+    {%endif%}
+   </div>
+  </div>
+ </div>

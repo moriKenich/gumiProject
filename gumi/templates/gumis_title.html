@@ -1,0 +1,48 @@
+{%load static%}
+<div class="d-none d-lg-block" style="background-image: url({% static "img/note3.jpg"%});">
+ <section class="py-5 text-center container" >
+  <div class="row py-lg-5">
+    <div class="col-lg-6 col-md-8 mx-auto">
+      {%if user.is_authenticated%}
+          <h1 class="fw-light pb-5 text-white">ようこそ！{{user.username}}さん</h1>
+          <p class="lead text-white">検索機能では、検索ワードに一部もしくは完全に一致した商品名またはメ－カー名を表示します。お気に入りに追加した商品は、マイページで確認できます。</p>
+           <div>
+               <a href="{%url 'gumi:search'%}" class="btn btn-primary my-2">検索する</a>
+           </div>
+      {%else%}
+          <h1 class="fw-light pb-5 text-white">グミ廃人の備忘録</h1>
+          <p class="lead text-white">自分好みのグミを探せるグミ特化の商品情報まとめサイトを作りました！</p>
+          <p class="lead text-white">サインアップしてログインすると商品の詳細を見ることができます。</p>
+          <p class="lead text-white">さらに、お気に入り機能と検索機能も使えます!</p>
+           <a href="{%url 'accounts:signup'%}" class="btn btn-primary my-2">今すぐサインアップ</a>
+           <a href="{%url 'accounts:login'%}" class="btn btn-secondary my-2 ">登録済みの方はログイン</a>
+      {%endif%}
+    
+    </div>
+  </div>
+ </section>
+</div>
+<div class="d-lg-none" style="background-image: url({% static "img/note3sm.jpg"%});">
+ <section class="py-5 text-center container" >
+  <div class="row py-lg-5">
+    <div class="col-lg-6 col-md-8 mx-auto">
+    
+      {%if user.is_authenticated%}
+          <h1 class="fw-light pb-5 text-white">ようこそ！{{user.username}}さん</h1>
+          <p class="lead text-white">検索機能では、検索ワードに一部もしくは完全に一致した商品名またはメ－カー名を表示します。お気に入りに追加した商品は、マイページで確認できます。</p>
+          <div>
+                <a href="{%url 'gumi:search'%}" class="btn btn-primary my-2">検索する</a>
+          </div>
+      {%else%}
+          
+          <p class="lead text-white">ログインすると商品の詳細を見ることができます。</p>
+          <p class="lead text-white">お気に入り機能と検索機能も使えるようになります!</p>
+       
+           <a href="{%url 'accounts:signup'%}" class="btn btn-primary my-2">今すぐサインアップ</a>
+           <a href="{%url 'accounts:login'%}" class="btn btn-secondary my-2">登録済みの方はログイン</a>
+      {%endif%}
+    
+    </div>
+  </div>
+ </section>
+</div>

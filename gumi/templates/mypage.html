@@ -1,0 +1,35 @@
+{%extends 'base.html'%}
+{%block title%}Mypage{%endblock%}
+   {%block contents%}
+    
+    {%if user.is_authenticated%}
+    <br>
+    <div style="text-align:center">
+     <h4>{{user.username}}さんのお気に入りリスト</h4>
+     {%if object_list|length == 0 %}
+      <p>商品の詳細ページからお気に入り登録をするとリストに追加されます。</p>
+    {%endif%}
+    </div>
+    <hr>
+    <div class="album py-5 bg-light">
+     <div class="container">
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+    {% endif %}
+    
+    {%for record in object_list%}
+    <div class="col">
+      <div class="card shadow-sm">
+        <img src="{{record.image.url}}" class="bd-placeholder-img card-img-top" width="100%" height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/></img>
+        <div class="card-body">
+          <h3 class="card-title">{{record.title}}</h3>
+          <p class="card-text"><a class="col" href="{% url 'gumi:gumi_maker' record.maker_id%}">{{record.maker}}</a></p>
+          <a href="{% url 'gumi:gumi_detail' record.pk%}" type="button" class="btn btn-primary btn-lg　text-right">詳細</a>
+        </div>
+      </div> 
+    </div>
+    {%endfor%}
+    </div>
+   </div>
+  </div>
+    {%include "pagination.html"%}
+   {%endblock%}
